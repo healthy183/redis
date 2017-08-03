@@ -40,6 +40,7 @@ public class AutoRedisCached extends BaseRedisDao<Object, Object> implements Ord
 
     @Around("cacheMethod()")
     public Object doArround(ProceedingJoinPoint pjp) throws Throwable{
+
         Object[] args = pjp.getArgs();
 
         MethodSignature methodSignature = (MethodSignature) pjp.getSignature();

@@ -4,7 +4,7 @@ version '1.0-SNAPSHOT'
 apply plugin: 'java'
 apply plugin: 'idea'
 
-sourceCompatibility = 1.7
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -44,7 +44,11 @@ dependencies {
     compile 'org.apache.commons:commons-lang3:3.1'
     compile 'org.apache.commons:commons-dbcp2:2.1.1'
     compile 'mysql:mysql-connector-java:5.1.26'
+}
 
+configurations {
+    // 所有需要忽略的包定义在此
+    all*.exclude group: 'log4j', module: 'log4j'
 }
 
 tasks.withType(JavaCompile) {

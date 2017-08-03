@@ -1,0 +1,3 @@
+AutoRedisCached
+RedisCached
+提供面向aop的redis切面缓存,但是无法提供处理单类更新和list冲突

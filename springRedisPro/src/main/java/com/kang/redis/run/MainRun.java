@@ -1,6 +1,5 @@
 package com.kang.redis.run;
 
-import com.kang.redis.main.ConfigBean;
 import com.kang.redis.main.ConfigMain;
 import com.kang.redis.main.RedisPool;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -16,8 +15,6 @@ public class MainRun {
 
 
     public static void main(String[] args) {
-
-
         AnnotationConfigApplicationContext ctx =
                 new AnnotationConfigApplicationContext(ConfigMain.class);
         RedisPool RedisPool = (com.kang.redis.main.RedisPool) ctx.getBean("redisPool");

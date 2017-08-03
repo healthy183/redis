@@ -38,7 +38,6 @@ public class TestConnection {
     @Autowired
     private RedisPool redisPool;
 
-
     @Test
     //@Transactional
     public void testTx(){
