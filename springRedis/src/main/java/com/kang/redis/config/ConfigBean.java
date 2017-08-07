@@ -1,23 +1,15 @@
 package com.kang.redis.config;
 
-import com.kang.redis.pubsub.sub.impl.SubServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.redis.connection.MessageListener;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
-import org.springframework.data.redis.core.RedisConnectionUtils;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.listener.ChannelTopic;
-import org.springframework.data.redis.listener.RedisMessageListenerContainer;
-import org.springframework.data.redis.listener.Topic;
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.JedisShardInfo;
-
-import java.util.*;
 
 /**
  * @Title 类名
@@ -32,8 +24,10 @@ public class ConfigBean {
     @Autowired
     private RedisPool redisPool;
 
-    @Autowired
-    private MessageListener subServiceImpl;
+    /*消息队列,这个注释掉,还有下面的channelTopic，redisMessageListenerContainer，
+    pubsub包下面的代码也是*/
+   /* @Autowired
+    private MessageListener subServiceImpl;*/
 
     @Bean
     public JedisPoolConfig jedisPoolConfig(){
@@ -49,7 +43,9 @@ public class ConfigBean {
     }
     @Bean
     public  JedisShardInfo jedisShardInfo(){
-        return new JedisShardInfo(redisPool.getIp(),redisPool.getPort());
+        JedisShardInfo jedisShardInfo = new JedisShardInfo(redisPool.getIp(),redisPool.getPort());
+        jedisShardInfo.setPassword(redisPool.getPassword());
+        return jedisShardInfo;
     }
 
     @Bean
@@ -58,7 +54,7 @@ public class ConfigBean {
         jedisConnectionFactory.setPoolConfig(jedisPoolConfig());
         jedisConnectionFactory.setHostName(redisPool.getIp());
         jedisConnectionFactory.setPort(redisPool.getPort());
-        //jedisConnectionFactory.setPassword(redisPool.getPassword());
+        jedisConnectionFactory.setPassword(redisPool.getPassword());
         //jedisConnectionFactory.setUsePool(false);
         jedisConnectionFactory.setShardInfo(jedisShardInfo());
         return jedisConnectionFactory;
@@ -77,7 +73,7 @@ public class ConfigBean {
         return redisTemplate;
     }
 
-    @Bean
+   /* @Bean
     public RedisMessageListenerContainer redisMessageListenerContainer(){
         RedisMessageListenerContainer redisMessageListenerContainer
                   = new RedisMessageListenerContainer();
@@ -92,10 +88,14 @@ public class ConfigBean {
         return redisMessageListenerContainer;
     }
 
+
+    *//**指定监听topic
+     * @return
+     *//*
     @Bean
     public ChannelTopic channelTopic(){
         return new ChannelTopic("user:topic");
-    }
+    }*/
 
 
     @Bean

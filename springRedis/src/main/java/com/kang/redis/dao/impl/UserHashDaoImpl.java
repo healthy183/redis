@@ -33,10 +33,7 @@ public class UserHashDaoImpl implements UserHashDao {
     }
 
     public User get(User user){
-
         return  hashOperations.get(user.getPid(),user.getUid());
-
-
     }
 
 }

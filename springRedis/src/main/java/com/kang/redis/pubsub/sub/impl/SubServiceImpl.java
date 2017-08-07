@@ -3,9 +3,7 @@ package com.kang.redis.pubsub.sub.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.connection.MessageListener;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.listener.ChannelTopic;
-import org.springframework.stereotype.Service;
 
 /**
  * @Title 类名
@@ -14,7 +12,7 @@ import org.springframework.stereotype.Service;
  * @Author 梁健康
  * @Version 2.0
  */
-@Service
+//@Service
 public class SubServiceImpl implements MessageListener {
 
     @Autowired

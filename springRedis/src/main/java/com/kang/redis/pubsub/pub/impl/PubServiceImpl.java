@@ -3,10 +3,6 @@ package com.kang.redis.pubsub.pub.impl;
 import com.kang.redis.pubsub.pub.PubService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 
 /**
  * @Title 类名
@@ -15,7 +11,7 @@ import javax.annotation.Resource;
  * @Author 梁健康
  * @Version 2.0
  */
-@Service
+//@Service
 public class PubServiceImpl implements PubService {
 
     @Autowired
